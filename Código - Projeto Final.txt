@@ -1,0 +1,76 @@
+Código em Pandas Projeto Final 
+
+
+python
+import pandas as pd
+
+# 1. Carregar o dataset
+Lista_smartphones_abril = pd.read_csv("smartprix_smartphones_april_2026.csv")
+
+# 2. Descrição inicial dos dados
+print("Informações gerais:")
+print(Lista_smartphones_abril.info())
+print("\nValores nulos por coluna:")
+print(Lista_smartphones_abril.isnull().sum())
+print("\nValores únicos por coluna:")
+print(Lista_smartphones_abril.nunique())
+
+# 3. Tratamento de qualidade dos dados
+# Remover colunas com valores constantes
+Lista_smartphones_abril = Lista_smartphones_abril.loc[:, df.nunique() > 1]
+
+# Remover linhas com valores nulos
+Lista_smartphones_abril = Lista_smartphones_abril.dropna()
+
+# Conferir novamente nulos
+print("\nApós tratamento, nulos por coluna:")
+print(Lista_smartphones_abril.isnull().sum())
+
+# 4. Perguntas e análises
+
+# Pergunta 1: Qual a média de preço por categoria?
+print("\nMédia de preço por categoria:")
+print(Lista_smartphones_abril.groupby("price_category")["price"].mean())
+
+# Pergunta 2: Qual marca tem mais modelos listados?
+print("\nMarca com mais modelos:")
+print(Lista_smartphones_abril["brand_name"].value_counts().head())
+
+# Pergunta 3: Qual sistema operacional mais aparece?
+print("\nSistema operacional mais frequente:")
+print(Lista_smartphones_abril["os"].value_counts().head())
+
+# Pergunta 4: Qual a média de capacidade de bateria por categoria de preço?
+print("\nMédia de bateria por categoria de preço:")
+print(Lista_smartphones_abril.groupby("price_category")["battery_capacity(mAh)"].mean())
+
+# Pergunta 5: Quais modelos possuem mais de 3 câmeras traseiras?
+print("\nModelos com mais de 3 câmeras traseiras:")
+print(Lista_smartphones_abril[Lista_smartphones_abril["rear_camera_count"] > 3][["brand_name","model","rear_camera_count"]])
+
+-------------------------------------------------------------------------------------------------------
+
+bash
+# Clonar repositório
+git clone https://github.com/joelucas1995/smartphone-analysis.git
+cd smartphone-analysis
+
+# Criar arquivo Python
+echo "conteúdo do código acima" > analysis.py
+
+# Adicionar ao Git
+git add analysis.py
+git commit -m "Commit 1: Adiciona script inicial de análise com Pandas"
+git push origin main
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+Commit 1: Adiciona script inicial de análise com Pandas
+
+Commit 2: Inclui tratamento de nulos e remoção de colunas constantes
+
+Commit 3: Adiciona análises exploratórias (média de preço, marcas, OS)
+
+Commit 4: Implementa perguntas adicionais sobre bateria e câmeras
+
+Commit 5: Refatora código para melhor legibilidade e comentários
